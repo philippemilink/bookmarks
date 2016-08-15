@@ -1,0 +1,24 @@
+{
+  "name": "bookmarks-client-pattern",
+  "authors": [
+    "Philippe MILINK - Mac <philippe.milink@gmx.fr>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "font-awesome-4.6.3": "http://fontawesome.io/assets/font-awesome-4.6.3.zip",
+    "angular": "1.5.8"
+  }
+}

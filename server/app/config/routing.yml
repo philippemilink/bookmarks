@@ -1,0 +1,15 @@
+app:
+    resource: "@AppBundle/Controller/DefaultController.php"
+    type:     annotation
+
+bookmarks:
+    type:     rest
+    resource: AppBundle\Controller\BookmarkController
+
+boxes:
+    type:     rest
+    resource: AppBundle\Controller\BoxController
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Bookmarks</title>
+		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
+		<link rel="stylesheet" type="text/css" href="bower_components/font-awesome-4.6.3/css/font-awesome.css">
+	</head>
+	<body class="container">
+		<div class="page-header">
+		  <h1>Bookmarks</h1>
+		</div>
+
+		<form>
+			<div class="input-group">
+				<input class="form-control input-sm" type="link" name="link" placeholder="Title of a new box...">
+				<span class="input-group-btn">
+					<button class="btn btn-sm btn-default"><span class="fa fa-plus"></span></button>
+				</span>
+			</div>
+		</form>
+
+		<br>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					Informatique 
+					<a href="#"><span class="fa fa-pencil"></span></a>
+					<a href="#"><span class="fa fa-trash"></span></a>
+				</h3>
+			</div>
+			<ul class="list-group">
+				<li class="list-group-item">
+					<a href="google.fr">google.fr</a>
+					<div class="pull-right">
+						<a href="#"><span class="fa fa-pencil"></span></a>
+						<a href="#"><span class="fa fa-trash"></span></a>
+					</div>
+				</li>
+				<li class="list-group-item">
+					<form>
+						<div class="input-group">
+							<input class="form-control input-sm" type="link" name="link" value="zestedesavoir.com">
+							<span class="input-group-btn">
+								<button class="btn btn-sm btn-default"><span class="fa fa-check"></span></button>
+							</span>
+						</div>
+					</form>
+				</li>
+			</ul>
+			<div class="panel-footer">
+				<form>
+					<div class="input-group">
+						<input class="form-control input-sm" type="link" name="link" placeholder="Link...">
+						<span class="input-group-btn">
+							<button class="btn btn-sm btn-default"><span class="fa fa-plus"></span></button>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<form>
+					<div class="input-group">
+						<input class="form-control input-sm" type="text" name="title" value="Metadata audio">
+						<span class="input-group-btn">
+							<button class="btn btn-sm btn-default"><span class="fa fa-check"></span></button>
+						</span>
+					</div>
+				</form>
+			</div>
+			<ul class="list-group">
+				<li class="list-group-item list-group-item-danger">
+					Delete <a href="https://mutagen.readthedocs.io/en/latest/api/flac.html">https://mutagen.readthedocs.io/en/latest/api/flac.html</a> ?
+					<a href="#"><span class="fa fa-check"></span></a>
+					<a href="#"><span class="fa fa-times"></span></a>
+				</li>
+			</ul>
+			<div class="panel-footer">
+				<form>
+					<div class="input-group">
+						<input class="form-control input-sm" type="link" name="link" placeholder="Link...">
+						<span class="input-group-btn">
+							<button class="btn btn-sm btn-default"><span class="fa fa-plus"></span></button>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="panel panel-default panel-danger">
+			<div class="panel-heading">
+				<p class="panel-title">
+					Delete <b>Vide</b> ?
+					<a href="#"><span class="fa fa-check"></span></a>
+					<a href="#"><span class="fa fa-times"></span></a>
+				</p>
+			</div>
+			<ul class="list-group">
+			</ul>
+			<div class="panel-footer">
+				<form>
+					<div class="input-group">
+						<input class="form-control input-sm" type="link" name="link" placeholder="Link...">
+						<span class="input-group-btn">
+							<button class="btn btn-sm btn-default"><span class="fa fa-plus"></span></button>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

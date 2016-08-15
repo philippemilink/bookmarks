@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 ng-show="showTitleStatus" class="panel-title">
+			{{ box.title }}
+			<a><span class="fa fa-pencil"></span></a>
+			<a ng-click="showDeleteAction()"><span class="fa fa-trash"></span></a>
+		</h3>
+		<p ng-show="showDeleteStatus" class="panel-title">
+			Delete <b>{{ box.title }}</b> ?
+			<a ng-click="deleteBox()"><span class="fa fa-check"></span></a>
+			<a ng-click="cancelDeleteAction()"><span class="fa fa-times"></span></a>
+		</p>
+	</div>
+	<ul class="list-group">
+		<li ng-repeat="bookmark in box.bookmarks" class="list-group-item">
+			<a href="{{ bookmark.link }}">{{ bookmark.link }}</a>
+			<div class="pull-right">
+				<a href="#"><span class="fa fa-pencil"></span></a>
+				<a href="#"><span class="fa fa-trash"></span></a>
+			</div>
+		</li>
+	</ul>
+	<div class="panel-footer">
+		<form ng-submit="addBookmark()">
+			<div class="input-group">
+				<input class="form-control input-sm" type="link" name="link" placeholder="Link...">
+				<span class="input-group-btn">
+					<button class="btn btn-sm btn-default"><span class="fa fa-plus"></span></button>
+				</span>
+			</div>
+		</form>
+	</div>
+</div>
