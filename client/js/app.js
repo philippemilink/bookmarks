@@ -6,7 +6,6 @@ var app = angular.module('BookmarksApp', []);
 
 
 app.controller('AppController', function($scope, BookmarksFactory) {
-	$scope.boxes = null;
 	$scope.getBoxesError = false;
 
 	BookmarksFactory.getBoxes().then(function(boxes) {
@@ -16,7 +15,6 @@ app.controller('AppController', function($scope, BookmarksFactory) {
 		$scope.getBoxesErrorData = msg
 	});
 
-	$scope.newBoxTitle = null;
 	$scope.postNewBoxError = false;
 
 	$scope.addBox = function() {
