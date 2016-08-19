@@ -1,42 +1,36 @@
-app.factory('BookmarksFactory', function($http, $q) {
+app.factory('BookmarksFactory', ['$http', '$q', function($http, $q) {
 	var factory = {
 		boxes: [],
 		getBoxes: function() {
-			var deferred = $q.defer();
-			$http.get(ROOT_URL + 'boxes')
-				.success(function(data, status) {
-					factory.boxes = data;
-					deferred.resolve(factory.boxes);
-				}).error(function(data, status) {
-					deferred.reject(data.error);
+			return $http.get(ROOT_URL + 'boxes')
+				.then(function(data) {
+					factory.boxes = data.data;
+					return factory.boxes;
+				}).catch(function(data) {
+					return data.error;
 				});
-			return deferred.promise;
 		},
 		postBox: function(data) {
-			var deferred = $q.defer();
-			$http.post(ROOT_URL + 'boxes', {title: data})
-				.success(function(data, status) {
-					factory.boxes.push(data);
-					deferred.resolve(data);
-				}).error(function(data, status) {
-					deferred.reject(data.children);
+			return $http.post(ROOT_URL + 'boxes', {title: data})
+				.then(function(data) {
+					factory.boxes.push(data.data);
+					return data.data;
+				}).catch(function(data) {
+					return data;
 				});
-			return deferred.promise;
 		},
 		deleteBox: function(id) {
-			var deferred = $q.defer();
-			$http.delete(ROOT_URL + 'boxes/' + id)
-				.success(function(data, status) {
+			return $http.delete(ROOT_URL + 'boxes/' + id)
+				.then(function(data) {
 					var index = factory.boxes.findIndex(function(box) {
 						return box.id == id;
 					});
 					factory.boxes.splice(index, 1);
-					deferred.resolve(factory.boxes);
-				}).error(function(data, status) {
-					deferred.reject(data.error);
+					return factory.boxes;
+				}).catch(function(data) {
+					return data.error;
 				});
-			return deferred.promise;
 		}
 	};
 	return factory;
-});
+}]);
