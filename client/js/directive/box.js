@@ -8,20 +8,39 @@ app.directive('ngBox', function() {
 		controller: function($scope, BookmarksFactory) {
 			$scope.showTitleStatus = true;
 			$scope.showDeleteStatus = false;
+			$scope.showEditStatus = false;
+
+			$scope.newTitle = $scope.box.title;
 
 			$scope.showDeleteAction = function() {
 				$scope.showTitleStatus = false;
 				$scope.showDeleteStatus = true;
+				$scope.showEditStatus = false;
 			}
 
-			$scope.cancelDeleteAction = function() {
+			$scope.backAction = function() {
 				$scope.showTitleStatus = true;
 				$scope.showDeleteStatus = false;
+				$scope.showEditStatus = false;
 			}
 
 			$scope.deleteBox = function() {
 				BookmarksFactory.deleteBox($scope.box.id).then(function(data) {
-					$scope.cancelDeleteAction();
+					$scope.backAction();
+				}, function(msg) {
+					console.log(msg)
+				});
+			}
+
+			$scope.showEditAction = function() {
+				$scope.showTitleStatus = false;
+				$scope.showDeleteStatus = false;
+				$scope.showEditStatus = true;
+			}
+
+			$scope.editBox = function() {
+				BookmarksFactory.editBox($scope.box.id, $scope.newTitle).then(function(data) {
+					$scope.backAction();
 				}, function(msg) {
 					console.log(msg)
 				});

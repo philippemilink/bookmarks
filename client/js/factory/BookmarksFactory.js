@@ -30,7 +30,19 @@ app.factory('BookmarksFactory', ['$http', '$q', function($http, $q) {
 				}).catch(function(data) {
 					return data.error;
 				});
-		}
+		},
+		editBox: function(id, title) {
+			return $http.put(ROOT_URL + 'boxes/' + id, {title: title})
+				.then(function(data) {
+					var index = factory.boxes.findIndex(function(box) {
+						return box.id == id;
+					});
+					factory.boxes[index].title = title;
+					return factory.boxes[index];
+				}).catch(function(data) {
+					return data;
+				});
+		},
 	};
 	return factory;
 }]);
