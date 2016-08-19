@@ -1,3 +1,9 @@
+function getIndex(boxes, id) {
+	return boxes.findIndex(function(box) {
+		return box.id == id;
+	});
+}
+
 app.factory('BookmarksFactory', ['$http', '$q', function($http, $q) {
 	var factory = {
 		boxes: [],
@@ -22,9 +28,7 @@ app.factory('BookmarksFactory', ['$http', '$q', function($http, $q) {
 		deleteBox: function(id) {
 			return $http.delete(ROOT_URL + 'boxes/' + id)
 				.then(function(data) {
-					var index = factory.boxes.findIndex(function(box) {
-						return box.id == id;
-					});
+					var index = getIndex(factory.boxes, id);
 					factory.boxes.splice(index, 1);
 					return factory.boxes;
 				}).catch(function(data) {
@@ -34,15 +38,24 @@ app.factory('BookmarksFactory', ['$http', '$q', function($http, $q) {
 		editBox: function(id, title) {
 			return $http.put(ROOT_URL + 'boxes/' + id, {title: title})
 				.then(function(data) {
-					var index = factory.boxes.findIndex(function(box) {
-						return box.id == id;
-					});
+					var index = getIndex(factory.boxes, id);
 					factory.boxes[index].title = title;
 					return factory.boxes[index];
 				}).catch(function(data) {
 					return data;
 				});
 		},
+		addBookmark: function(id, link) {
+			return $http.post(ROOT_URL + 'boxes/' + id + '/bookmarks', {link: link})
+				.then(function(data) {
+					var index = getIndex(factory.boxes, id);
+					factory.boxes[index].bookmarks.push(data.data);
+					factory.boxes.push(data.data);
+					return data.data;
+				}).catch(function(data) {
+					return data;
+				});
+		}
 	};
 	return factory;
 }]);

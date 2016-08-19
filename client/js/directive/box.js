@@ -11,6 +11,7 @@ app.directive('ngBox', function() {
 			$scope.showEditStatus = false;
 
 			$scope.newTitle = $scope.box.title;
+			$scope.newLink = null;
 
 			$scope.showDeleteAction = function() {
 				$scope.showTitleStatus = false;
@@ -45,6 +46,16 @@ app.directive('ngBox', function() {
 					console.log(msg)
 				});
 			}
+
+			$scope.addBookmark = function() {
+				BookmarksFactory.addBookmark($scope.box.id, $scope.newLink).then(function(data) {
+					$scope.newLink = null;
+				}, function(msg) {
+					console.log(msg)
+				});
+			}
+
+
 		}
 	}
 })

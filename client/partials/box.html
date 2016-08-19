@@ -32,7 +32,7 @@
 	<div class="panel-footer">
 		<form ng-submit="addBookmark()">
 			<div class="input-group">
-				<input class="form-control input-sm" type="link" name="link" placeholder="Link...">
+				<input ng-model="newLink" class="form-control input-sm" type="link" name="link" placeholder="Link...">
 				<span class="input-group-btn">
 					<button class="btn btn-sm btn-default"><span class="fa fa-plus"></span></button>
 				</span>
