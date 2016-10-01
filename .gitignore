@@ -3,3 +3,4 @@ server/vendor/*
 server/var/cache/*
 server/var/logs/*
 server/var/sessions/*
+.idea/
