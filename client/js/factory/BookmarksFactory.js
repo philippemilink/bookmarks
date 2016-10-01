@@ -4,7 +4,7 @@ function getIndex(boxes, id) {
 	});
 }
 
-app.factory('BookmarksFactory', ['$http', '$q', function($http, $q) {
+app.factory('BookmarksFactory', ['$http', function($http) {
 	var factory = {
 		boxes: [],
 		getBoxes: function() {
@@ -27,7 +27,7 @@ app.factory('BookmarksFactory', ['$http', '$q', function($http, $q) {
 		},
 		deleteBox: function(id) {
 			return $http.delete(ROOT_URL + 'boxes/' + id)
-				.then(function(data) {
+				.then(function() {
 					var index = getIndex(factory.boxes, id);
 					factory.boxes.splice(index, 1);
 					return factory.boxes;
@@ -37,7 +37,7 @@ app.factory('BookmarksFactory', ['$http', '$q', function($http, $q) {
 		},
 		editBox: function(id, title) {
 			return $http.put(ROOT_URL + 'boxes/' + id, {title: title})
-				.then(function(data) {
+				.then(function() {
 					var index = getIndex(factory.boxes, id);
 					factory.boxes[index].title = title;
 					return factory.boxes[index];
@@ -50,7 +50,6 @@ app.factory('BookmarksFactory', ['$http', '$q', function($http, $q) {
 				.then(function(data) {
 					var index = getIndex(factory.boxes, id);
 					factory.boxes[index].bookmarks.push(data.data);
-					factory.boxes.push(data.data);
 					return data.data;
 				}).catch(function(data) {
 					return data;
