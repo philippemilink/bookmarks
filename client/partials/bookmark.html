@@ -1,0 +1,17 @@
+<div ng-show="showLinkStatus">
+    <a href="{{ bookmark.link }}">{{ bookmark.link }}</a>
+    <div class="pull-right">
+        <a ng-click="showEditAction()"><span class="fa fa-pencil"></span></a>
+        <a href="#"><span class="fa fa-trash"></span></a>
+    </div>
+</div>
+
+<form ng-show="showEditStatus" ng-submit="editBookmark()">
+    <div class="input-group">
+        <input class="form-control input-sm" type="url" name="link" ng-model="newLink">
+        <span class="input-group-btn">
+            <button class="btn btn-sm btn-default"><span class="fa fa-check"></span></button>
+            <span class="btn btn-sm btn-default" ng-click="backAction()"><span class="fa fa-times"></span></span>
+        </span>
+    </div>
+</form>

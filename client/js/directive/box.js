@@ -5,7 +5,7 @@ app.directive('ngBox', function() {
 			box: '=',
 			boxes: '='
 		},
-		controller: function($scope, BookmarksFactory) {
+		controller: function($scope, BoxFactory) {
 			$scope.showTitleStatus = true;
 			$scope.showDeleteStatus = false;
 			$scope.showEditStatus = false;
@@ -17,38 +17,38 @@ app.directive('ngBox', function() {
 				$scope.showTitleStatus = false;
 				$scope.showDeleteStatus = true;
 				$scope.showEditStatus = false;
-			}
+			};
 
 			$scope.backAction = function() {
 				$scope.showTitleStatus = true;
 				$scope.showDeleteStatus = false;
 				$scope.showEditStatus = false;
-			}
+			};
 
 			$scope.deleteBox = function() {
-				BookmarksFactory.deleteBox($scope.box.id).then(function(data) {
+				BoxFactory.deleteBox($scope.box.id).then(function() {
 					$scope.backAction();
 				}, function(msg) {
 					console.log(msg)
 				});
-			}
+			};
 
 			$scope.showEditAction = function() {
 				$scope.showTitleStatus = false;
 				$scope.showDeleteStatus = false;
 				$scope.showEditStatus = true;
-			}
+			};
 
 			$scope.editBox = function() {
-				BookmarksFactory.editBox($scope.box.id, $scope.newTitle).then(function(data) {
+				BoxFactory.editBox($scope.box.id, $scope.newTitle).then(function() {
 					$scope.backAction();
 				}, function(msg) {
 					console.log(msg)
 				});
-			}
+			};
 
 			$scope.addBookmark = function() {
-				BookmarksFactory.addBookmark($scope.box.id, $scope.newLink).then(function(data) {
+				BoxFactory.addBookmark($scope.box.id, $scope.newLink).then(function() {
 					$scope.newLink = null;
 				}, function(msg) {
 					console.log(msg)
@@ -58,4 +58,4 @@ app.directive('ngBox', function() {
 
 		}
 	}
-})
+});

@@ -5,10 +5,10 @@ var app = angular.module('BookmarksApp', []);
 
 
 
-app.controller('AppController', function($scope, BookmarksFactory) {
+app.controller('AppController', function($scope, BoxFactory) {
 	$scope.getBoxesError = false;
 
-	BookmarksFactory.getBoxes().then(function(boxes) {
+	BoxFactory.getBoxes().then(function(boxes) {
 		$scope.boxes = boxes;
 	}, function(msg) {
 		$scope.getBoxesError = true;
@@ -18,12 +18,12 @@ app.controller('AppController', function($scope, BookmarksFactory) {
 	$scope.postNewBoxError = false;
 
 	$scope.addBox = function() {
-		BookmarksFactory.postBox($scope.newBoxTitle).then(function(box) {
+		BoxFactory.postBox($scope.newBoxTitle).then(function() {
 			$scope.postNewBoxError = false;
 			$scope.newBoxTitle = null;
 		}, function(msg) {
 			$scope.postNewBoxError = true;
-			$scope.postNewBoxErrorForm = msg
+			$scope.postNewBoxErrorForm = msg;
 			console.log(msg)
 		});
 	};

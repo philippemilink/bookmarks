@@ -4,7 +4,7 @@ function getIndex(boxes, id) {
 	});
 }
 
-app.factory('BookmarksFactory', ['$http', function($http) {
+app.factory('BoxFactory', ['$http', function($http) {
 	var factory = {
 		boxes: [],
 		getBoxes: function() {
