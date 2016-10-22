@@ -2,13 +2,13 @@
 	<div class="panel-heading">
 		<h3 ng-show="showTitleStatus" class="panel-title">
 			{{ box.title }}
-			<a ng-click="showEditAction()"><span class="fa fa-pencil"></span></a>
-			<a ng-click="showDeleteAction()"><span class="fa fa-trash"></span></a>
+			<a class="pointer" ng-click="showEditAction()"><span class="fa fa-pencil"></span></a>
+			<a class="pointer" ng-click="showDeleteAction()"><span class="fa fa-trash"></span></a>
 		</h3>
 		<p ng-show="showDeleteStatus" class="panel-title">
 			Delete <b>{{ box.title }}</b> ?
-			<a ng-click="deleteBox()"><span class="fa fa-check"></span></a>
-			<a ng-click="backAction()"><span class="fa fa-times"></span></a>
+			<a class="pointer" ng-click="deleteBox()"><span class="fa fa-check"></span></a>
+			<a class="pointer" ng-click="backAction()"><span class="fa fa-times"></span></a>
 		</p>
 		<form ng-show="showEditStatus" ng-submit="editBox()">
 			<div class="input-group">

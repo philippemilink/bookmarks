@@ -1,15 +1,15 @@
 <div ng-show="showLinkStatus">
     <a href="{{ bookmark.link }}">{{ bookmark.link }}</a>
     <div class="pull-right">
-        <a ng-click="showEditAction()"><span class="fa fa-pencil"></span></a>
-        <a ng-click="showDeleteAction()"><span class="fa fa-trash"></span></a>
+        <a class="pointer" class="pointer" ng-click="showEditAction()"><span class="fa fa-pencil"></span></a>
+        <a class="pointer" ng-click="showDeleteAction()"><span class="fa fa-trash"></span></a>
     </div>
 </div>
 
 <div ng-show="showDeleteStatus">
     Delete <a href="{{ bookmark.link }}">{{ bookmark.link }}</a> ?
-    <a ng-click="deleteBookmark()"><span class="fa fa-check"></span></a>
-    <a ng-click="backAction()"><span class="fa fa-times"></span></a>
+    <a class="pointer" ng-click="deleteBookmark()"><span class="fa fa-check"></span></a>
+    <a class="pointer" ng-click="backAction()"><span class="fa fa-times"></span></a>
 </div>
 
 
