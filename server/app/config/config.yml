@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@UserBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -84,3 +85,18 @@ nelmio_api_doc:
         request_format:
             method: "accept_header"
 
+fos_user:
+    db_driver: orm
+    firewall_name: api                                  # Seems to be used when registering user/reseting password,
+                                                          # but since there is no "login", as so it seems to be useless in
+                                                          # our particular context, but still required by "FOSUserBundle"
+    user_class: UserBundle\Entity\User
+
+fos_oauth_server:
+    db_driver:           orm
+    client_class:        UserBundle\Entity\Client
+    access_token_class:  UserBundle\Entity\AccessToken
+    refresh_token_class: UserBundle\Entity\RefreshToken
+    auth_code_class:     UserBundle\Entity\AuthCode
+    service:
+        user_provider: fos_user.user_provider.username
