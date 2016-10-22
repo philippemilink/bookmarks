@@ -2,9 +2,16 @@
     <a href="{{ bookmark.link }}">{{ bookmark.link }}</a>
     <div class="pull-right">
         <a ng-click="showEditAction()"><span class="fa fa-pencil"></span></a>
-        <a href="#"><span class="fa fa-trash"></span></a>
+        <a ng-click="showDeleteAction()"><span class="fa fa-trash"></span></a>
     </div>
 </div>
+
+<div ng-show="showDeleteStatus">
+    Delete <a href="{{ bookmark.link }}">{{ bookmark.link }}</a> ?
+    <a ng-click="deleteBookmark()"><span class="fa fa-check"></span></a>
+    <a ng-click="backAction()"><span class="fa fa-times"></span></a>
+</div>
+
 
 <form ng-show="showEditStatus" ng-submit="editBookmark()">
     <div class="input-group">

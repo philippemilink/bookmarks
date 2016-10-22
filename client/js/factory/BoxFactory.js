@@ -1,6 +1,6 @@
-function getIndex(boxes, id) {
-	return boxes.findIndex(function(box) {
-		return box.id == id;
+function getIndex(array, id) {
+	return array.findIndex(function(item) {
+		return item.id == id;
 	});
 }
 
@@ -53,6 +53,17 @@ app.factory('BoxFactory', ['$http', function($http) {
 					return data.data;
 				}).catch(function(data) {
 					return data;
+				});
+		},
+		deleteBookmark: function(idBox, idBookmark) {
+			return $http.delete(ROOT_URL + 'boxes/' + idBox + '/bookmarks/' + idBookmark)
+				.then(function() {
+					var indexBox = getIndex(factory.boxes, idBox);
+					var indexBookmark = getIndex(factory.boxes[indexBox].bookmarks, idBookmark);
+					factory.boxes[indexBox].bookmarks.splice(indexBookmark, 1);
+					return factory.boxes;
+				}).catch(function(data) {
+					return data.error;
 				});
 		}
 	};
