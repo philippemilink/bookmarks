@@ -11,9 +11,18 @@ app.factory('BoxFactory', ['$http', function($http) {
 			return $http.get(ROOT_URL + 'boxes')
 				.then(function(data) {
 					factory.boxes = data.data;
-					return factory.boxes;
-				}).catch(function(data) {
-					return data.error;
+					return {
+                        valid: true,
+                        data: factory.boxes
+                    };
+				}, function(data) {
+					return {
+                        valid: false,
+                        data: {
+                            code: data.data.error,
+                            message: data.data.error_description
+                        }
+                    };
 				});
 		},
 		postBox: function(data) {

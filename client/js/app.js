@@ -8,11 +8,13 @@ var app = angular.module('BookmarksApp', []);
 app.controller('AppController', function($scope, BoxFactory) {
 	$scope.getBoxesError = false;
 
-	BoxFactory.getBoxes().then(function(boxes) {
-		$scope.boxes = boxes;
-	}, function(msg) {
-		$scope.getBoxesError = true;
-		$scope.getBoxesErrorData = msg
+	BoxFactory.getBoxes().then(function(data) {
+		if (data.valid) {
+			$scope.boxes = boxes;
+		} else {
+			$scope.getBoxesError = true;
+			$scope.getBoxesErrorData = data.data;
+		}
 	});
 
 	$scope.postNewBoxError = false;
