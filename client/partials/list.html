@@ -1,0 +1,19 @@
+<p class="alert alert-danger" ng-show="getBoxesError"><b>{{ getBoxesErrorData.code }}</b>: {{ getBoxesErrorData.message }}</p>
+
+<section ng-hide="getBoxesError">
+    <form ng-submit="addBox()">
+        <div class="input-group">
+            <input ng-model="newBoxTitle" class="form-control input-sm" type="text" name="link" placeholder="Title of a new box...">
+					<span class="input-group-btn">
+						<button class="btn btn-sm btn-default"><span class="fa fa-plus"></span></button>
+					</span>
+        </div>
+        <ul ng-show="postNewBoxError" class="alert alert-danger">
+            <li ng-repeat="error in postNewBoxErrorForm.title.errors">{{ error }}</li>
+        </ul>
+    </form>
+
+    <br>
+
+    <ng-box ng-repeat="box in boxes" box="box" boxes="boxes"></ng-box>
+</section>

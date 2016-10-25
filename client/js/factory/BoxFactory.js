@@ -4,7 +4,7 @@ function getIndex(array, id) {
 	});
 }
 
-app.factory('BoxFactory', ['$http', function($http) {
+app.factory('BoxFactory', ['$http', '$location', function($http, $location) {
 	var factory = {
 		boxes: [],
 		getBoxes: function() {
@@ -16,8 +16,11 @@ app.factory('BoxFactory', ['$http', function($http) {
                         data: factory.boxes
                     };
 				}, function(data) {
+					if (data.status==401) {
+						$location.path('login');
+					}
 					return {
-                        valid: false,
+						valid: false,
                         data: {
                             code: data.data.error,
                             message: data.data.error_description

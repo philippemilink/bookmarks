@@ -1,7 +1,13 @@
 var ROOT_URL = "http://localhost/bookmarks/server/web/app_dev.php/";
 
 
-var app = angular.module('BookmarksApp', []);
+var app = angular.module('BookmarksApp', ['ngRoute']);
+
+app.config(function($routeProvider) {
+	$routeProvider.when('/', { templateUrl: 'partials/list.html', controller: 'AppController' })
+		.when('/login', { templateUrl: 'partials/login.html', controller: 'LoginController' })
+		.otherwise({ redirectTo: '/' });
+});
 
 
 
@@ -29,4 +35,8 @@ app.controller('AppController', function($scope, BoxFactory) {
 			console.log(msg)
 		});
 	};
+});
+
+app.controller('LoginController', function($scope) {
+
 });
