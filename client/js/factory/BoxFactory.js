@@ -4,6 +4,29 @@ function getIndex(array, id) {
 	});
 }
 
+function checkError($location, error) {
+	var code = error.status;
+	var message;
+	switch (code) {
+		case 401:
+			message = "Unauthorized";
+			$location.path('login');
+			break;
+		case 500:
+			message = "Internal Server Error";
+			break;
+		default:
+			message = "Error";
+			break;
+	}
+
+	return {
+		valid: false,
+		code: code,
+		message: message
+	};
+}
+
 app.factory('BoxFactory', ['$http', '$location', function($http, $location) {
 	var factory = {
 		boxes: [],
@@ -16,16 +39,7 @@ app.factory('BoxFactory', ['$http', '$location', function($http, $location) {
                         data: factory.boxes
                     };
 				}, function(data) {
-					if (data.status==401) {
-						$location.path('login');
-					}
-					return {
-						valid: false,
-                        data: {
-                            code: data.data.error,
-                            message: data.data.error_description
-                        }
-                    };
+					return checkError($location, data);
 				});
 		},
 		postBox: function(data) {

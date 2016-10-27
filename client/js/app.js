@@ -19,7 +19,7 @@ app.controller('AppController', function($scope, BoxFactory) {
 			$scope.boxes = boxes;
 		} else {
 			$scope.getBoxesError = true;
-			$scope.getBoxesErrorData = data.data;
+			$scope.getBoxesErrorData = data;
 		}
 	});
 
