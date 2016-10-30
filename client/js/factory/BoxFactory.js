@@ -22,7 +22,7 @@ function checkError($location, error) {
 
 	return {
 		valid: false,
-		code: code,
+		title: code,
 		message: message
 	};
 }

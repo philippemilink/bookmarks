@@ -12,14 +12,14 @@ app.config(function($routeProvider) {
 
 
 app.controller('AppController', function($scope, BoxFactory) {
-	$scope.getBoxesError = false;
+	$scope.getBoxesError = { show: false };
 
 	BoxFactory.getBoxes().then(function(data) {
 		if (data.valid) {
 			$scope.boxes = boxes;
 		} else {
-			$scope.getBoxesError = true;
-			$scope.getBoxesErrorData = data;
+			$scope.getBoxesError = data;
+			$scope.getBoxesError.show = true;
 		}
 	});
 

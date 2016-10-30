@@ -1,6 +1,6 @@
-<p class="alert alert-danger" ng-show="getBoxesError"><b>{{ getBoxesErrorData.code }}</b>: {{ getBoxesErrorData.message }}</p>
+<ng-error error="getBoxesError"></ng-error>
 
-<section ng-hide="getBoxesError">
+<section ng-hide="getBoxesError.show">
     <form ng-submit="addBox()">
         <div class="input-group">
             <input ng-model="newBoxTitle" class="form-control input-sm" type="text" name="link" placeholder="Title of a new box...">
