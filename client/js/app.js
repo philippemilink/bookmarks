@@ -18,7 +18,7 @@ app.controller('AppController', function($scope, BoxFactory) {
 
 	BoxFactory.getBoxes().then(function(data) {
 		if (data.valid) {
-			$scope.boxes = boxes;
+			$scope.boxes = data.data;
 		} else {
 			$scope.getBoxesError = data;
 			$scope.getBoxesError.show = true;
@@ -39,7 +39,7 @@ app.controller('AppController', function($scope, BoxFactory) {
 	};
 });
 
-app.controller('LoginController', function($scope, $http, $location) {
+app.controller('LoginController', function($scope, $http, $location, oauth) {
 	$scope.username = null;
 	$scope.password = null;
 	$scope.error = { show: false };
@@ -52,7 +52,7 @@ app.controller('LoginController', function($scope, $http, $location) {
 				username: $scope.username,
 				password: $scope.password
 			}).then(function(data) {
-				//$rootScope.token = data.data.access_token;
+				oauth.setAccessToken(data.data.access_token);
 				$location.path('');
 			}, function(data) {
 				$scope.error.title = data.data.error;
