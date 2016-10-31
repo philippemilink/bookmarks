@@ -1,4 +1,6 @@
 var ROOT_URL = "http://localhost/bookmarks/server/web/app_dev.php/";
+var CLIENT_ID = "1_3bcbxd9e24g0gk4swg0kwgcwg4o8k8g4g888kwc44gcc0gwwk4";
+var CLIENT_SECRET = "4ok2x70rlfokc8g0wws8c8kwcokw80k44sg48goc0ok4w0so0k";
 
 
 var app = angular.module('BookmarksApp', ['ngRoute']);
@@ -37,6 +39,25 @@ app.controller('AppController', function($scope, BoxFactory) {
 	};
 });
 
-app.controller('LoginController', function($scope) {
+app.controller('LoginController', function($scope, $http, $location) {
+	$scope.username = null;
+	$scope.password = null;
+	$scope.error = { show: false };
 
+	$scope.getToken = function() {
+		$http.post(ROOT_URL + 'oauth/v2/token', {
+				grant_type: "password",
+				client_id: CLIENT_ID,
+				client_secret: CLIENT_SECRET,
+				username: $scope.username,
+				password: $scope.password
+			}).then(function(data) {
+				//$rootScope.token = data.data.access_token;
+				$location.path('');
+			}, function(data) {
+				$scope.error.title = data.data.error;
+				$scope.error.message = data.data.error_description;
+				$scope.error.show = true;
+			});
+	}
 });
