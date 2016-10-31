@@ -27,14 +27,11 @@ function checkError($location, error) {
 	};
 }
 
-app.factory('BoxFactory', ['$http', '$location', 'oauth', function($http, $location, oauth) {
+app.factory('BoxFactory', ['$http', '$location', function($http, $location) {
 	var factory = {
 		boxes: [],
 		getBoxes: function() {
-			console.log(oauth.getAccessToken());
-			return $http.get(ROOT_URL + 'boxes', {headers: {
-				Authorization: "Bearer " + oauth.getAccessToken()
-			}}).then(function(data) {
+			return $http.get(ROOT_URL + 'boxes').then(function(data) {
 					factory.boxes = data.data;
 					return {
                         valid: true,

@@ -11,6 +11,17 @@ app.config(function($routeProvider) {
 		.otherwise({ redirectTo: '/' });
 });
 
+app.config(function($httpProvider) {
+	$httpProvider.interceptors.push(function($q, $rootScope) {
+		return {
+			'request': function(config) {
+				config.headers.Authorization = "Bearer " + $rootScope.accessToken;
+				return config;
+			}
+		};
+	});
+});
+
 
 
 app.controller('AppController', function($scope, BoxFactory) {
@@ -39,25 +50,18 @@ app.controller('AppController', function($scope, BoxFactory) {
 	};
 });
 
-app.controller('LoginController', function($scope, $http, $location, oauth) {
+app.controller('LoginController', function($scope, $location, OauthFactory) {
 	$scope.username = null;
 	$scope.password = null;
 	$scope.error = { show: false };
 
 	$scope.getToken = function() {
-		$http.post(ROOT_URL + 'oauth/v2/token', {
-				grant_type: "password",
-				client_id: CLIENT_ID,
-				client_secret: CLIENT_SECRET,
-				username: $scope.username,
-				password: $scope.password
-			}).then(function(data) {
-				oauth.setAccessToken(data.data.access_token);
+		OauthFactory.requestAccessToken($scope.username, $scope.password).then(function(data) {
+			if (data.valid) {
 				$location.path('');
-			}, function(data) {
-				$scope.error.title = data.data.error;
-				$scope.error.message = data.data.error_description;
-				$scope.error.show = true;
-			});
+			} else {
+				$scope.error = data.data;
+			}
+		});
 	}
 });
