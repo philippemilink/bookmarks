@@ -4,12 +4,11 @@ app.controller('LoginController', function($scope, $location, OauthFactory) {
     $scope.error = { show: false };
 
     $scope.getToken = function() {
-        OauthFactory.requestAccessToken($scope.username, $scope.password).then(function(data) {
-            if (data.valid) {
+        OauthFactory.requestAccessToken($scope.username, $scope.password)
+            .then(function(data) {
                 $location.path('');
-            } else {
-                $scope.error = data.data;
-            }
-        });
-    }
+            }, function(data) {
+                $scope.error = data;
+            });
+    };
 });

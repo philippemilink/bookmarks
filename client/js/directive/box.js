@@ -28,8 +28,8 @@ app.directive('ngBox', function() {
 			$scope.deleteBox = function() {
 				BoxFactory.deleteBox($scope.box.id).then(function() {
 					$scope.backAction();
-				}, function(msg) {
-					console.log(msg)
+				}, function(data) {
+					alert(data);
 				});
 			};
 
@@ -42,16 +42,16 @@ app.directive('ngBox', function() {
 			$scope.editBox = function() {
 				BoxFactory.editBox($scope.box.id, $scope.newTitle).then(function() {
 					$scope.backAction();
-				}, function(msg) {
-					console.log(msg)
+				}, function(data) {
+					alert(data);
 				});
 			};
 
 			$scope.addBookmark = function() {
 				BoxFactory.addBookmark($scope.box.id, $scope.newLink).then(function() {
 					$scope.newLink = null;
-				}, function(msg) {
-					console.log(msg)
+				}, function(data) {
+					alert(data);
 				});
 			}
 

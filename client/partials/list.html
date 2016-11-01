@@ -1,6 +1,6 @@
-<ng-error error="getBoxesError"></ng-error>
+<ng-error error="error"></ng-error>
 
-<section ng-hide="getBoxesError.show">
+<section ng-show="showForm">
     <form ng-submit="addBox()">
         <div class="input-group">
             <input ng-model="newBoxTitle" class="form-control input-sm" type="text" name="link" placeholder="Title of a new box...">

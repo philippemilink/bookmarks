@@ -1,4 +1,4 @@
-app.factory('OauthFactory', function($http, localStorageService) {
+app.factory('OauthFactory', function($http, $q, localStorageService) {
     var factory = {
         accessToken: null,
 
@@ -12,7 +12,9 @@ app.factory('OauthFactory', function($http, localStorageService) {
         },
 
         requestAccessToken: function (username, password) {
-            return $http.post(ROOT_URL + 'oauth/v2/token', {
+            var deferred = $q.defer();
+
+            $http.post(ROOT_URL + 'oauth/v2/token', {
                 grant_type: "password",
                 client_id: CLIENT_ID,
                 client_secret: CLIENT_SECRET,
@@ -20,17 +22,16 @@ app.factory('OauthFactory', function($http, localStorageService) {
                 password: password
             }).then(function (data) {
                 factory.setAccessToken(data.data.access_token);
-                return { valid: true };
+                deferred.resolve(true);
             }, function (data) {
-                return {
-                    valid: false,
-                    data: {
-                        title: data.data.error,
-                        message: data.data.error_description,
-                        show: true
-                    }
-                };
+                deferred.reject({
+                    title: data.data.error,
+                    message: data.data.error_description,
+                    show: true
+                });
             });
+
+            return deferred.promise;
         }
     };
 

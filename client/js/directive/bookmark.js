@@ -5,7 +5,7 @@ app.directive('ngBookmark', function () {
             bookmark: '=',
             box: '='
         },
-        controller: function($scope, BookmarkFactory, BoxFactory) {
+        controller: function($scope, BoxFactory) {
             $scope.showLinkStatus = true;
             $scope.showEditStatus = false;
             $scope.showDeleteStatus = false;
@@ -31,7 +31,7 @@ app.directive('ngBookmark', function () {
             };
 
             $scope.editBookmark = function() {
-                BookmarkFactory.editBookmark($scope.box.id, $scope.bookmark.id, $scope.newLink).then(function() {
+                BoxFactory.editBookmark($scope.box.id, $scope.bookmark.id, $scope.newLink).then(function() {
                     $scope.bookmark.link = $scope.newLink;
                     $scope.backAction();
                 }, function(msg) {
