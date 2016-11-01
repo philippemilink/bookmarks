@@ -20,6 +20,7 @@
     "bootstrap": "^3.3.6",
     "font-awesome-4.6.3": "http://fontawesome.io/assets/font-awesome-4.6.3.zip",
     "angular": "1.5.8",
-    "angular-route": "https://code.angularjs.org/1.5.8/angular-route.js"
+    "angular-route": "https://code.angularjs.org/1.5.8/angular-route.js",
+    "angular-local-storage": "^0.5.2"
   }
 }

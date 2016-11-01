@@ -1,10 +1,10 @@
-app.factory('OauthFactory', function($http, $rootScope) {
+app.factory('OauthFactory', function($http, localStorageService) {
     var factory = {
         accessToken: null,
 
         setAccessToken: function (accessToken) {
             factory.accessToken = accessToken;
-            $rootScope.accessToken = accessToken;
+            localStorageService.set('accessToken', accessToken);
         },
 
         getAccessToken: function () {
