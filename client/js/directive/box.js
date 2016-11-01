@@ -5,7 +5,7 @@ app.directive('ngBox', function() {
 			box: '=',
 			boxes: '='
 		},
-		controller: function($scope, BoxFactory) {
+		controller: ['$scope', 'BoxFactory', function($scope, BoxFactory) {
 			$scope.showTitleStatus = true;
 			$scope.showDeleteStatus = false;
 			$scope.showEditStatus = false;
@@ -54,8 +54,6 @@ app.directive('ngBox', function() {
 					alert(data);
 				});
 			}
-
-
-		}
+		}]
 	}
 });

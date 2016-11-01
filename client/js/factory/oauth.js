@@ -1,4 +1,4 @@
-app.factory('OauthFactory', function($http, $q, localStorageService) {
+app.factory('OauthFactory', ['$http', '$q', 'localStorageService', function($http, $q, localStorageService) {
     var factory = {
         accessToken: null,
 
@@ -36,4 +36,4 @@ app.factory('OauthFactory', function($http, $q, localStorageService) {
     };
 
     return factory;
-});
+}]);

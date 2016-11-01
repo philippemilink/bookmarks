@@ -5,7 +5,7 @@ app.directive('ngBookmark', function () {
             bookmark: '=',
             box: '='
         },
-        controller: function($scope, BoxFactory) {
+        controller: ['$scope', 'BoxFactory', function($scope, BoxFactory) {
             $scope.showLinkStatus = true;
             $scope.showEditStatus = false;
             $scope.showDeleteStatus = false;
@@ -47,6 +47,6 @@ app.directive('ngBookmark', function () {
                     console.log(msg)
                 });
             };
-        }
+        }]
     }
 });

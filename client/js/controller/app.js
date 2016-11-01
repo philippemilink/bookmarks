@@ -1,4 +1,4 @@
-app.controller('AppController', function($scope, BoxFactory) {
+app.controller('AppController',['$scope', 'BoxFactory', function($scope, BoxFactory) {
     $scope.error = { show: false };
     $scope.showForm = true;
 
@@ -20,4 +20,4 @@ app.controller('AppController', function($scope, BoxFactory) {
             $scope.error.show = true;
         });
     };
-});
+}]);

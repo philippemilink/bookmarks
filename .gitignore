@@ -5,3 +5,6 @@ server/var/logs/*
 server/var/sessions/*
 .idea/
 client/js/parameters.js
+client/node_modules/*
+client/js/output.min.js
+client/css/output.css

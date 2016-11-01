@@ -7,12 +7,12 @@ app.config(function($routeProvider) {
 });
 
 app.config(function($httpProvider) {
-	$httpProvider.interceptors.push(function($q, localStorageService) {
+	$httpProvider.interceptors.push(['$q', 'localStorageService', function($q, localStorageService) {
 		return {
 			'request': function(config) {
 				config.headers.Authorization = "Bearer " + localStorageService.get('accessToken');
 				return config;
 			}
 		};
-	});
+	}]);
 });

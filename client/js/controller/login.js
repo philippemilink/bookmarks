@@ -1,4 +1,4 @@
-app.controller('LoginController', function($scope, $location, OauthFactory) {
+app.controller('LoginController', ['$scope', '$location', 'OauthFactory', function($scope, $location, OauthFactory) {
     $scope.username = null;
     $scope.password = null;
     $scope.error = { show: false };
@@ -11,4 +11,4 @@ app.controller('LoginController', function($scope, $location, OauthFactory) {
                 $scope.error = data;
             });
     };
-});
+}]);
