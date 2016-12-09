@@ -2,21 +2,21 @@ user:
     resource: "@UserBundle/Resources/config/routing.yml"
     prefix:   /
 
-app:
-    resource: "@AppBundle/Controller/DefaultController.php"
-    type:     annotation
-
 bookmarks:
     type:     rest
     resource: AppBundle\Controller\BookmarkController
+    prefix:   /api
 
 boxes:
     type:     rest
     resource: AppBundle\Controller\BoxController
+    prefix:   /api
+
 
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix:   /api/doc
+    prefix:   /documentation
 
 fos_oauth_server_token:
     resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+    prefix: /api
