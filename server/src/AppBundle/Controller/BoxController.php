@@ -3,8 +3,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Box;
 use AppBundle\Form\BoxType;
-use FOS\RestBundle\Controller\Annotations as Rest; // alias pour toutes les annotations
-use FOS\RestBundle\View\View; // Utilisation de la vue de FOSRestBundle
+use FOS\RestBundle\Controller\Annotations as Rest;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
