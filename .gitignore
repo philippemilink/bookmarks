@@ -3,7 +3,7 @@ server/vendor/*
 server/var/cache/*
 server/var/logs/*
 server/var/sessions/*
-.idea/
+server/app/config/parameters.yml
 client/js/parameters.js
 client/node_modules/*
 client/js/output.min.js

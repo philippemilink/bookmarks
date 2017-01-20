@@ -18,12 +18,15 @@ cd bookmarks
 
 ### Server
 
-Go to server folder: `
+Go to server folder: 
 ```shell
 cd server
 ```
 
 Edit settings in *app/config/parameters.yml*. Your database must already be created.
+```shell
+cp app/config/parameters.yml.dist app/config/parameters.yml
+```
 
 Install [Composer](https://getcomposer.org/).
 
