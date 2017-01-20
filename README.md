@@ -3,6 +3,7 @@
  
 This application is divided in two parts: a REST API written with Symfony (folder *server*) and a front-end written with AngularJS (folder *client*).
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/283568a0-5403-464b-85fc-e34c45e746ba/big.png)](https://insight.sensiolabs.com/projects/283568a0-5403-464b-85fc-e34c45e746ba)
 
 ## Installation
 
