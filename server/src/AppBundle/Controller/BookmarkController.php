@@ -2,7 +2,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Bookmark;
-use AppBundle\Form\BookmarkType;
+use AppBundle\Form\Type\BookmarkType;
 use FOS\RestBundle\Controller\Annotations as Rest; // alias pour toutes les annotations
 use FOS\RestBundle\View\View; // Utilisation de la vue de FOSRestBundle
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
