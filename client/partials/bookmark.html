@@ -1,5 +1,5 @@
 <div ng-show="showLinkStatus">
-    <a href="{{ bookmark.link }}">{{ bookmark.link }}</a>
+    <a href="{{ bookmark.link }}">{{ bookmark.title }}</a>
     <div class="pull-right">
         <a class="pointer" class="pointer" ng-click="showEditAction()"><span class="fa fa-pencil"></span></a>
         <a class="pointer" ng-click="showDeleteAction()"><span class="fa fa-trash"></span></a>
@@ -7,7 +7,7 @@
 </div>
 
 <div ng-show="showDeleteStatus">
-    Delete <a href="{{ bookmark.link }}">{{ bookmark.link }}</a> ?
+    Delete <a href="{{ bookmark.link }}">{{ bookmark.title }}</a> ?
     <a class="pointer" ng-click="deleteBookmark()"><span class="fa fa-check"></span></a>
     <a class="pointer" ng-click="backAction()"><span class="fa fa-times"></span></a>
 </div>

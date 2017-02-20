@@ -29,6 +29,13 @@ class Bookmark
     private $link;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="text")
+     */
+    private $title;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="dateCreation", type="datetime")
@@ -63,6 +70,25 @@ class Bookmark
     public function setLink($link)
     {
         $this->link = $link;
+
+        try {
+            $page = file_get_contents($this->getLink());
+
+            if ($page !== False) {
+                preg_match("/\<title.*\>(.*)\<\/title\>/isU", $page, $matches);
+
+                if (count($matches) < 2) {
+                    $this->setTitle($this->getLink());
+                } else {
+                    $this->setTitle($matches[1]);
+                }
+
+            } else {
+                $this->setTitle($this->getLink());
+            }
+        } catch (\Exception $e) {
+            $this->setTitle($this->getLink());
+        }
 
         return $this;
     }
@@ -123,5 +149,29 @@ class Bookmark
     public function getBox()
     {
         return $this->box;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return Bookmark
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 }
