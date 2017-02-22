@@ -18,7 +18,8 @@ module.exports = function(grunt) {
                         'js/factory/BoxFactory.js',
                         'js/directive/error.js',
                         'js/directive/box.js',
-                        'js/directive/bookmark.js'
+                        'js/directive/bookmark.js',
+                        'js/filters.js'
                     ]
                 }
             }
