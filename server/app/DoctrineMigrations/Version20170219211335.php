@@ -36,7 +36,7 @@ class Version20170219211335 extends AbstractMigration
 
         foreach ($bookmarks as $bookmark) {
             $queryBuilder = $this->connection->createQueryBuilder();
-            $queryBuilder->update('Bookmark', 'b')
+            $queryBuilder->update('bookmark', 'b')
                          ->set('b.title', ':title')
                          ->where('b.id=:id')
                          ->setParameter('id', $bookmark['id']);

@@ -93,3 +93,8 @@ grunt
 ```
 
 You can now go to [http://domain.tld/bookmarks/client/](http://domain.tld/bookmarks/client/) to use this application.
+
+
+## Upgrade
+
+To upgrade your version of *Bookmarks*, read this [Upgrade guide](https://github.com/philippemilink/bookmarks/blob/master/upgrade.md).
