@@ -14,13 +14,13 @@ function checkError($location, error) {
 	};
 }
 
-app.factory('BoxFactory', ['$http', '$location', '$q', function($http, $location, $q) {
+app.factory('BoxFactory', ['$http', '$location', '$q', 'OauthFactory', function($http, $location, $q, OauthFactory) {
 	var factory = {
 		boxes: [],
 		getBoxes: function() {
 			var deferred = $q.defer();
 
-			$http.get(ROOT_URL + 'boxes')
+			$http.get(ROOT_URL + 'boxes', { headers: { Authorization: "Bearer " + OauthFactory.getAccessToken() } })
 				.then(function(data) {
 					factory.boxes = data.data;
 					deferred.resolve(factory.boxes);
@@ -33,7 +33,7 @@ app.factory('BoxFactory', ['$http', '$location', '$q', function($http, $location
 		postBox: function(data) {
 			var deferred = $q.defer();
 
-			$http.post(ROOT_URL + 'boxes', {title: data})
+			$http.post(ROOT_URL + 'boxes', {title: data}, { headers: { Authorization: "Bearer " + OauthFactory.getAccessToken() } })
 				.then(function(data) {
 					factory.boxes.push(data.data);
 					deferred.resolve(data.data);
@@ -46,7 +46,7 @@ app.factory('BoxFactory', ['$http', '$location', '$q', function($http, $location
 		deleteBox: function(id) {
 			var deferred = $q.defer();
 
-			$http.delete(ROOT_URL + 'boxes/' + id)
+			$http.delete(ROOT_URL + 'boxes/' + id, { headers: { Authorization: "Bearer " + OauthFactory.getAccessToken() } })
 				.then(function() {
 					var index = getIndex(factory.boxes, id);
 					factory.boxes.splice(index, 1);
@@ -60,7 +60,7 @@ app.factory('BoxFactory', ['$http', '$location', '$q', function($http, $location
 		editBox: function(id, title) {
 			var deferred = $q.defer();
 
-			$http.put(ROOT_URL + 'boxes/' + id, {title: title})
+			$http.put(ROOT_URL + 'boxes/' + id, {title: title}, { headers: { Authorization: "Bearer " + OauthFactory.getAccessToken() } })
 				.then(function() {
 					var index = getIndex(factory.boxes, id);
 					factory.boxes[index].title = title;
@@ -74,7 +74,7 @@ app.factory('BoxFactory', ['$http', '$location', '$q', function($http, $location
 		addBookmark: function(id, link) {
 			var deferred = $q.defer();
 
-			$http.post(ROOT_URL + 'boxes/' + id + '/bookmarks', {link: link})
+			$http.post(ROOT_URL + 'boxes/' + id + '/bookmarks', {link: link}, { headers: { Authorization: "Bearer " + OauthFactory.getAccessToken() } })
 				.then(function(data) {
 					var index = getIndex(factory.boxes, id);
 					factory.boxes[index].bookmarks.push(data.data);
@@ -88,7 +88,7 @@ app.factory('BoxFactory', ['$http', '$location', '$q', function($http, $location
 		deleteBookmark: function(idBox, idBookmark) {
 			var deferred = $q.defer();
 
-			$http.delete(ROOT_URL + 'boxes/' + idBox + '/bookmarks/' + idBookmark)
+			$http.delete(ROOT_URL + 'boxes/' + idBox + '/bookmarks/' + idBookmark, { headers: { Authorization: "Bearer " + OauthFactory.getAccessToken() } })
 				.then(function() {
 					var indexBox = getIndex(factory.boxes, idBox);
 					var indexBookmark = getIndex(factory.boxes[indexBox].bookmarks, idBookmark);
@@ -103,7 +103,7 @@ app.factory('BoxFactory', ['$http', '$location', '$q', function($http, $location
 		editBookmark: function(idBox, idBookmark, link) {
 			var deferred = $q.defer();
 
-			$http.put(ROOT_URL + 'boxes/' + idBox + '/bookmarks/' + idBookmark, {link: link})
+			$http.put(ROOT_URL + 'boxes/' + idBox + '/bookmarks/' + idBookmark, {link: link}, { headers: { Authorization: "Bearer " + OauthFactory.getAccessToken() } })
 				.then(function() {
 					deferred.resolve(true);
 				}, function(data) {
