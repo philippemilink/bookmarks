@@ -1,4 +1,4 @@
-app.factory('OauthFactory', ['$http', '$q', 'localStorageService', function($http, $q, localStorageService) {
+app.factory('OauthFactory', ['$http', '$q', 'localStorageService', '$location', function($http, $q, localStorageService, $location) {
     var factory = {
         setAccessToken: function (accessToken, expiration) {
             localStorageService.set('accessToken', accessToken);
@@ -74,6 +74,11 @@ app.factory('OauthFactory', ['$http', '$q', 'localStorageService', function($htt
             });
 
             return deferred.promise;
+        },
+
+        logout: function() {
+            localStorageService.clearAll();
+            $location.path('login');
         }
     };
 

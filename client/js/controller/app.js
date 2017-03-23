@@ -1,4 +1,4 @@
-app.controller('AppController',['$scope', 'BoxFactory', function($scope, BoxFactory) {
+app.controller('AppController',['$scope', 'BoxFactory', 'OauthFactory', function($scope, BoxFactory, OauthFactory) {
     $scope.error = { show: false };
     $scope.showForm = true;
 
@@ -20,4 +20,8 @@ app.controller('AppController',['$scope', 'BoxFactory', function($scope, BoxFact
             $scope.error.show = true;
         });
     };
+
+    $scope.logout = function() {
+        OauthFactory.logout();
+    }
 }]);
