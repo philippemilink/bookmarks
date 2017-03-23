@@ -5,7 +5,7 @@ app.controller('LoginController', ['$scope', '$location', 'OauthFactory', functi
 
     $scope.getToken = function() {
         OauthFactory.requestAccessToken($scope.username, $scope.password)
-            .then(function(data) {
+            .then(function() {
                 $location.path('');
             }, function(data) {
                 $scope.error = data;

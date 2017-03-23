@@ -3,7 +3,6 @@ app.directive('ngBox', function() {
 		templateUrl: 'partials/box.html',
 		scope: {
 			box: '=',
-			boxes: '='
 		},
 		controller: ['$scope', 'BoxFactory', function($scope, BoxFactory) {
 			$scope.showTitleStatus = true;

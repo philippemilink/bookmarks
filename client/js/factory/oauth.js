@@ -2,16 +2,27 @@ app.factory('OauthFactory', ['$http', '$q', 'localStorageService', function($htt
     var factory = {
         setAccessToken: function (accessToken, expiration) {
             localStorageService.set('accessToken', accessToken);
-            localStorageService.set('accessTokenExpiration', Date.now() + expiration - 60);
+            localStorageService.set('accessTokenExpiration', (Date.now()/1000) + expiration - 60);
         },
 
         getAccessToken: function () {
-            return localStorageService.get('accessToken');
+            var deferred = $q.defer();
+
+            if ((Date.now()/1000) < parseInt(localStorageService.get('accessTokenExpiration'))) {
+                deferred.resolve(localStorageService.get('accessToken'));
+            } else {
+                if ((Date.now()/1000) < parseInt(localStorageService.get('refreshTokenExpiration'))) {
+                    return factory.requestAccessTokenFromRefreshToken();
+                } else {
+                    deferred.reject();
+                }
+            }
+            return deferred.promise;
         },
 
         setRefreshToken: function (refreshToken) {
             localStorageService.set('refreshToken', refreshToken);
-            localStorageService.set('refreshTokenExpiration', Date.now() + REFRESH_TOKEN_LIFETIME - 3600);
+            localStorageService.set('refreshTokenExpiration', (Date.now()/1000) + REFRESH_TOKEN_LIFETIME - 3600);
         },
 
         getRefreshToken: function () {
@@ -29,8 +40,8 @@ app.factory('OauthFactory', ['$http', '$q', 'localStorageService', function($htt
                 password: password
             }).then(function (data) {
                 factory.setAccessToken(data.data.access_token, data.data.expires_in);
-                factory.setRefreshToken(data.data.refresh_token)
-                deferred.resolve(true);
+                factory.setRefreshToken(data.data.refresh_token);
+                deferred.resolve();
             }, function (data) {
                 deferred.reject({
                     title: data.data.error,
@@ -53,7 +64,7 @@ app.factory('OauthFactory', ['$http', '$q', 'localStorageService', function($htt
             }).then(function (data) {
                 factory.setAccessToken(data.data.access_token, data.data.expires_in);
                 factory.setRefreshToken(data.data.refresh_token)
-                deferred.resolve(true);
+                deferred.resolve(data.data.access_token);
             }, function (data) {
                 deferred.reject({
                     title: data.data.error,
