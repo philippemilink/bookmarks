@@ -129,8 +129,8 @@ app.factory('BoxFactory', ['$http', '$location', '$q', 'OauthFactory', function(
 				var deferred = $q.defer();
 
 				$http.put(ROOT_URL + 'boxes/' + idBox + '/bookmarks/' + idBookmark, {link: link}, { headers: { Authorization: "Bearer " + accessToken } })
-					.then(function() {
-						deferred.resolve(true);
+					.then(function(data) {
+						deferred.resolve(data.data);
 					}, function(data) {
 						deferred.reject(checkError($location, data));
 					});

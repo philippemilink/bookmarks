@@ -31,8 +31,9 @@ app.directive('ngBookmark', function () {
             };
 
             $scope.editBookmark = function() {
-                BoxFactory.editBookmark($scope.box.id, $scope.bookmark.id, $scope.newLink).then(function() {
+                BoxFactory.editBookmark($scope.box.id, $scope.bookmark.id, $scope.newLink).then(function(data) {
                     $scope.bookmark.link = $scope.newLink;
+                    $scope.bookmark.title = data.title;
                     $scope.backAction();
                 }, function(msg) {
                     console.log(msg);
