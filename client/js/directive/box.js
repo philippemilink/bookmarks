@@ -8,6 +8,7 @@ app.directive('ngBox', function() {
 			$scope.showTitleStatus = true;
 			$scope.showDeleteStatus = false;
 			$scope.showEditStatus = false;
+			$scope.showTools = false;
 
 			$scope.newTitle = $scope.box.title;
 			$scope.newLink = null;
@@ -52,7 +53,15 @@ app.directive('ngBox', function() {
 				}, function(data) {
 					alert(data);
 				});
-			}
+			};
+
+			$scope.mouseEnter = function() {
+				$scope.showTools = true;
+			};
+
+			$scope.mouseLeave = function() {
+				$scope.showTools = false;
+			};
 		}]
 	}
 });

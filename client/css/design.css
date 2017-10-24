@@ -1,3 +1,22 @@
 .pointer:hover {
     cursor: pointer;
 }
+
+*, *:before, *:after {box-sizing:  border-box !important;}
+
+
+.app-row {
+    -moz-column-width: 25em;
+    -webkit-column-width: 25em;
+    -moz-column-gap: .5em;
+    -webkit-column-gap: .5em;
+    margin-left: 0;
+    margin-right: 0;
+
+}
+
+.panel {
+    display: inline-block;
+    padding:  0;
+    width: 100%;
+}

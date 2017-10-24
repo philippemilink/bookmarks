@@ -9,6 +9,7 @@ app.directive('ngBookmark', function () {
             $scope.showLinkStatus = true;
             $scope.showEditStatus = false;
             $scope.showDeleteStatus = false;
+            $scope.showTools = false;
 
             $scope.newLink = $scope.bookmark.link;
 
@@ -47,6 +48,14 @@ app.directive('ngBookmark', function () {
                 }, function(msg) {
                     console.log(msg)
                 });
+            };
+
+            $scope.mouseEnter = function() {
+                $scope.showTools = true;
+            };
+
+            $scope.mouseLeave = function() {
+                $scope.showTools = false;
             };
         }]
     }

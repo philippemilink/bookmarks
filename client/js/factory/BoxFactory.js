@@ -40,7 +40,7 @@ app.factory('BoxFactory', ['$http', '$location', '$q', 'OauthFactory', function(
 
 				$http.post(ROOT_URL + 'boxes', {title: data}, { headers: { Authorization: "Bearer " + accessToken } })
 					.then(function(data) {
-						factory.boxes.push(data.data);
+						factory.boxes.unshift(data.data);
 						deferred.resolve(data.data);
 					}, function(data) {
 						deferred.reject(checkError($location, data));

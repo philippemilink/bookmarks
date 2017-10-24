@@ -1,9 +1,9 @@
-<div ng-show="showLinkStatus">
-    <a href="{{ bookmark.link }}" target="_blank">{{ bookmark.title|html_decode }}</a>
-    <div class="pull-right">
+<div ng-show="showLinkStatus" ng-mouseenter="mouseEnter()" ng-mouseleave="mouseLeave()">
+    <div class="pull-right" ng-show="showTools">
         <a class="pointer" class="pointer" ng-click="showEditAction()"><span class="fa fa-pencil"></span></a>
         <a class="pointer" ng-click="showDeleteAction()"><span class="fa fa-trash"></span></a>
     </div>
+    <a href="{{ bookmark.link }}" target="_blank">{{ bookmark.title|html_decode }}</a>
 </div>
 
 <div ng-show="showDeleteStatus">
