@@ -3,11 +3,11 @@
         <a class="pointer" class="pointer" ng-click="showEditAction()"><span class="fa fa-pencil"></span></a>
         <a class="pointer" ng-click="showDeleteAction()"><span class="fa fa-trash"></span></a>
     </div>
-    <a href="{{ bookmark.link }}" target="_blank">{{ bookmark.title|html_decode }}</a>
+    <a href="{{ bookmark.link }}" target="_blank">{{ bookmark.title }}</a>
 </div>
 
 <div ng-show="showDeleteStatus">
-    Delete <a href="{{ bookmark.link }}" target="_blank">{{ bookmark.title|html_decode }}</a> ?
+    Delete <a href="{{ bookmark.link }}" target="_blank">{{ bookmark.title }}</a> ?
     <a class="pointer" ng-click="deleteBookmark()"><span class="fa fa-check"></span></a>
     <a class="pointer" ng-click="backAction()"><span class="fa fa-times"></span></a>
 </div>

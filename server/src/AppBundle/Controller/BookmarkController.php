@@ -77,7 +77,9 @@ class BookmarkController extends Controller
 
         $bookmark = new Bookmark();
         $bookmark->setBox($box); 
-        $form = $this->createForm(BookmarkType::class, $bookmark);
+        $form = $this->createForm(BookmarkType::class, $bookmark, array(
+            'title_page_getter' => $this->get('title_page_getter')
+        ));
 
         $form->submit($request->request->all());
 

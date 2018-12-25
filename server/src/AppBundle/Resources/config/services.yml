@@ -1,0 +1,3 @@
+services:
+    title_page_getter:
+        class: AppBundle\Service\TitlePageGetter

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Bookmark
  *
- * @ORM\Table(name="bookmark")
+ * @ORM\Table(name="bookmark", options={"collate":"utf8mb4_general_ci", "charset":"utf8mb4"})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\BookmarkRepository")
  */
 class Bookmark
@@ -70,25 +70,6 @@ class Bookmark
     public function setLink($link)
     {
         $this->link = $link;
-
-        try {
-            $page = file_get_contents($this->getLink());
-
-            if ($page !== False) {
-                preg_match("/\<title.*\>(.*)\<\/title\>/isU", $page, $matches);
-
-                if (count($matches) < 2) {
-                    $this->setTitle($this->getLink());
-                } else {
-                    $this->setTitle($matches[1]);
-                }
-
-            } else {
-                $this->setTitle($this->getLink());
-            }
-        } catch (\Exception $e) {
-            $this->setTitle($this->getLink());
-        }
 
         return $this;
     }
