@@ -1,6 +1,10 @@
 # Bookmarks
 *A light web application to manage web bookmarks*
- 
+
+
+**This application isn't maintained anymore.** You can use [NextCloud](https://nextcloud.com/) and its [Bookmarks application](https://github.com/nextcloud/bookmarks). The script *move2nextcloud.py* migrates data from this application to a Nextcloud instance.
+
+
 This application is divided in two parts: a REST API written with Symfony (folder *server*) and a front-end written with AngularJS (folder *client*).
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/283568a0-5403-464b-85fc-e34c45e746ba/big.png)](https://insight.sensiolabs.com/projects/283568a0-5403-464b-85fc-e34c45e746ba)
